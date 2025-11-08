@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics Dashboard</title>
+  <link rel="stylesheet" href="statistics.css" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Rizzalian Analytics Dashboard</h1>
+
+<div class="chart-container">
+  <canvas id="activeUsersChart"></canvas>
+</div>
+<div class="chart-container">
+  <canvas id="likesChart"></canvas>
+</div>
+<div class="chart-container">
+  <canvas id="matchesChart"></canvas>
+</div>
+<div class="chart-container">
+  <canvas id="gradYearChart"></canvas>
+</div>
+<div class="chart-container">
+  <canvas id="popularInterestsChart"></canvas>
+</div>
+<div class="chart-container">
+  <canvas id="interestSuccessChart"></canvas>
+</div>
+<div class="chart-container">
+  <canvas id="retentionChart"></canvas>
+</div>
+<div class="chart-container">
+  <canvas id="genderChart"></canvas>
+</div>
+
+
+
+  <!-- ✅ Footer Navigation (added) -->
+  <footer class="footer-nav">
+    <button class="nav-btn" onclick="window.location.href='home.html'">
+      <img src="home.png" alt="Home">
+    </button>
+    <button class="nav-btn" onclick="window.location.href='myaccount.html'">
+      <img src="profile.png" alt="Profile">
+    </button>
+    <button class="nav-btn" onclick="window.location.href='statistics.html'">
+      <img src="stats.png" alt="Statistics">
+    </button>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="statistics.js"></script>
+</body>
+</html>
