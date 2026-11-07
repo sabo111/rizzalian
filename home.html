@@ -1,0 +1,116 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rizzalian - Home</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"></div>
+
+    <!-- Search bar (keeps existing behavior) -->
+    <form id="searchForm" class="search-bar" role="search" onsubmit="event.preventDefault();">
+      <label for="searchInput" class="visually-hidden">Search profiles</label>
+      <input id="searchInput" type="search" placeholder="Search names, interests or location..." aria-label="Search profiles">
+      <button type="button" id="clearSearch" title="Clear search">✕</button>
+      <div id="searchResults" class="search-results" hidden></div>
+    </form>
+
+    <div class="nav-buttons">
+      <button onclick="window.location.href='rizzalian.html'">Logout</button>
+
+      <!-- Filter button placed beside Logout -->
+      <div class="filter-wrapper">
+        <button id="openFilterBtn" type="button" aria-haspopup="true" aria-expanded="false">Filter</button>
+
+        <!-- Inline dropdown filter (replaces full-screen panel) -->
+        <div class="filter-dropdown" id="filterDropdown" aria-hidden="true" hidden>
+          <form id="filterForm" class="filter-form" onsubmit="event.preventDefault(); applyFilter();">
+            <div class="filter-grid">
+              <label>
+                ID
+                <input type="text" id="filterId" name="id" placeholder="e.g. 12345">
+              </label>
+
+              <label>
+                Last name
+                <input type="text" id="filterLastName" name="lastName" placeholder="e.g. Smith">
+              </label>
+
+              <label>
+                Program
+                <input type="text" id="filterProgram" name="program" placeholder="e.g. Computer Science">
+              </label>
+
+              <label>
+                Meta tags (comma separated)
+                <input type="text" id="filterMeta" name="meta" placeholder="e.g. gamer,music,python">
+              </label>
+            </div>
+
+            <div class="filter-actions">
+              <button type="submit" class="apply-btn">Apply</button>
+              <button type="button" class="clear-btn" id="clearFilter">Clear</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Navigation Arrows -->
+  <button class="nav-arrow left" id="leftArrow">←</button>
+  <button class="nav-arrow right" id="rightArrow">→</button>
+
+  <main class="feed" id="feed"></main>
+
+  <!-- Instagram-style sliding profile panel -->
+  <div class="user-panel" id="userPanel">
+    <div class="panel-container">
+      <div class="panel-header">
+        <button class="close-btn" id="closePanel">✖</button>
+      </div>
+
+      <div class="user-main">
+        <div class="profile-section">
+          <img id="panelMainImg" class="main-photo" src="" alt="User">
+          <div class="action-buttons">
+            <button class="action-btn like-btn" id="likeBtn">❤️ Like</button>
+            <button class="action-btn dislike-btn" id="dislikeBtn">✖ Dislike</button>
+            <button class="match-btn" id="matchBtn" style="display: none;"></button>
+          </div>
+        </div>
+        <h2 id="panelName"></h2>
+      </div>
+
+      <!-- User Details -->
+      <div class="user-details" id="userDetails"></div>
+
+      <!-- Looking For -->
+      <div class="looking-for-section">
+        <h3 class="section-title">Looking For</h3>
+        <p class="looking-for-text" id="lookingFor"></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ✅ Footer Navigation (added) -->
+  <footer class="footer-nav">
+    <button class="nav-btn" onclick="window.location.href='home.html'">
+      <img src="home.png" alt="Home">
+    </button>
+    <button class="nav-btn" onclick="window.location.href='myaccount.html'">
+      <img src="profile.png" alt="Profile">
+    </button>
+    <button class="nav-btn" onclick="window.location.href='statistics.html'">
+      <img src="stats.png" alt="Statistics">
+    </button>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="home.js"></script>
+</body>
+</html>

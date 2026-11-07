@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rizzalian - My Profile</title>
+  <link rel="stylesheet" href="myaccount.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"></div>
+    <div class="nav-buttons">
+      <button onclick="window.location.href='rizzalian.html'"> Logout</button>
+    </div>
+  </nav>
+
+  <main class="profile-container">
+    <!-- Profile Card -->
+    <!-- ADDED id and data-id (data-id will be populated by JS) -->
+    <section class="profile-card" id="profileCard" data-id="">
+      <div class="profile-pic-container">
+        <img src="" alt="Profile" id="profilePic">
+        <label for="uploadProfilePic" class="pic-edit"> + </label>
+        <input type="file" id="uploadProfilePic" accept="image/*" hidden />
+      </div>
+      <div class="profile-details">
+        <h2 id="username">Loading...</h2>
+        <p id="bio">Loading bio...</p>
+        <p id="extraDetails"></p>
+
+        <!-- Hidden input so delete logic can read user id synchronously -->
+        <input type="hidden" id="userId" value="">
+
+        <div class="profile-actions">
+          <button id="editProfileBtn">Edit Profile</button>
+          <button id="deleteProfileBtn">Delete Profile</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal for Editing Profile -->
+    <div class="modal" id="editProfileModal">
+      <div class="modal-content">
+        <h3>Edit Profile</h3>
+        <input type="text" id="editName" placeholder="Full Name">
+        <input type="number" id="editAge" placeholder="Age">
+        <input type="date" id="editBirthday" placeholder="Birthday">
+        <input type="text" id="editGraduatedCourse" placeholder="Graduated Course (e.g., BS Computer Science)">
+        <input type="number" id="editGraduationYear" placeholder="Graduation Year (e.g., 2020)">
+        <input type="text" id="editCurrentProfession" placeholder="Current Profession">
+        <select id="editGender">
+          <option value="" disabled selected>Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" id="editLocation" placeholder="Location">
+        <input type="text" id="editHeight" placeholder="Height (e.g., 170 or 5'8&quot;)">
+        <input type="text" id="editHobbies" placeholder="Hobbies (e.g., reading, traveling)">
+        <input type="text" id="editLookingFor" placeholder="Looking for (e.g., friendship, relationship)">
+        <textarea id="editBio" placeholder="Your bio..."></textarea>
+        <div class="modal-buttons">
+          <button id="cancelEdit">Cancel</button>
+          <button id="saveProfile">Save</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-nav">
+    <button class="nav-btn" onclick="window.location.href='home.html'">
+      <img src="home.png" alt="Home">
+    </button>
+    <button class="nav-btn" onclick="window.location.href='myaccount.html'">
+      <img src="profile.png" alt="Profile">
+    </button>
+    <button class="nav-btn" onclick="window.location.href='statistics.html'">
+      <img src="stats.png" alt="Statistics">
+    </button>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="myaccount.js"></script>
+</body>
+</html>

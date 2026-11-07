@@ -1,0 +1,72 @@
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url("background.png");
+  background-size: cover;        /* make image fill screen */
+  background-position: center;   /* center the image */
+  background-attachment: fixed;  /* keeps image static while scrolling */
+  color: #333;
+  text-align: center;
+}
+
+
+h1 {
+  background-image: url("background.png");
+  color: white;
+  padding: 15px 0;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.chart-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 30px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* === FOOTER NAVIGATION BAR === */
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: url('background.png');
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 0;
+  z-index: 1000;
+}
+
+.footer-nav .nav-btn {
+  background-color: #0a1e66;
+  border: 3px solid #facc15;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.footer-nav .nav-btn:hover {
+  background-color: #facc15;
+  transform: scale(1.1);
+}
+
+.footer-nav .nav-btn img {
+  width: 28px;
+  height: 28px;
+}
+
+.footer-nav .nav-btn:hover img {
+  filter: invert(0%) brightness(0%);
+}

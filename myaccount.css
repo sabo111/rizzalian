@@ -1,0 +1,797 @@
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: url('background.png');
+  background-size: cover;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }  
+  
+  .logo {
+    width: 100px; 
+    height: 100px;
+    background-image: url('logo.png');
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background: transparent;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.nav-buttons button {
+  margin-left: 12px;
+  padding: 8px 16px;
+  border: none;
+  background: #facc15;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-buttons button:hover {
+  background: #fff;
+}
+
+
+/* PROFILE CARD */
+.profile-card {
+  width: 80%;
+  max-width: 980px;
+  background: #fff;
+  border-radius: 10px;
+  margin: 80px auto;
+  padding: 25px 35px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.profile-pic-container {
+  position: relative;
+}
+
+.profile-pic-container img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pic-edit {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  background: #0077b6;
+  color: #fff;
+  padding: 5px 7px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.pic-edit:hover {
+  background: #005f8f;
+}
+
+.profile-details {
+  flex: 1;
+}
+
+.profile-details h2 {
+  color: #0077b6;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.profile-details p {
+  margin-top: 4px;
+  color: #555;
+  font-size: 15px;
+}
+
+#editProfileBtn {
+  margin-top: 15px;
+  background: #facc15;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+#editProfileBtn:hover {
+  background: #ffeb7b;
+}
+
+/* ADDED: Delete profile button styling */
+#deleteProfileBtn {
+  margin-top: 15px;
+  margin-left: 10px; /* sits beside edit button */
+  background: #ef4444;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: 0 6px 18px rgba(239,68,68,0.12);
+}
+
+#deleteProfileBtn:hover {
+  background: #f87171;
+  transform: translateY(-2px);
+}
+
+/* Ensure buttons align nicely on small widths */
+.profile-details .actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* MODALS */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+  z-index: 2000;
+}
+
+.modal.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* MODAL CONTENT */
+.modal-content {
+  background: #fbfcfd;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  padding: 0;
+  overflow: hidden;
+}
+
+.modal-content h3 {
+  background: #3c5484;
+  color: #fff;
+  margin: 0;
+  padding: 10px 0;
+  border-radius: 20px 20px 0 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 90%;
+  margin: 15px auto;
+  padding: 12px 15px;
+  border: none;
+  background: #3c5484;
+  color: #fff;
+  border-radius: 30px;
+  font-size: 15px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+#editBio {
+  height: 100px;
+  border-radius: 15px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 15px 50px 20px;
+}
+
+.modal-buttons button {
+  background: #facc15;
+  border: none;
+  color: #000a29;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  flex-grow: 1;
+}
+
+.modal-buttons button:hover {
+  background: #fff;
+}
+
+#editProfileModal input,
+#editProfileModal select,
+#editProfileModal textarea {
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: #3c5484;
+  color: white;
+  font-size: 14px;
+  display: block;
+  outline: none;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+}
+
+#editProfileModal select {
+  appearance: none;
+  cursor: pointer;
+}
+
+#editProfileModal textarea {
+  height: 80px;
+  resize: none;
+}
+
+
+/* IMAGE MODAL */
+.image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 200;
+  animation: fadeIn 0.3s ease;
+}
+
+.image-modal.active {
+  display: flex;
+}
+
+.image-modal img {
+  max-width: 90%;
+  max-height: 70vh;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.image-modal .caption {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 80%;
+}
+
+.image-modal .actions {
+  display: flex;
+  gap: 20px;
+}
+
+.image-modal .actions button {
+  background: #0077b6;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.image-modal .actions button:hover {
+  background: #005f8f;
+}
+
+.image-modal .close-modal {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: transparent;
+  color: #fff;
+  font-size: 26px;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* === FOOTER NAVIGATION BAR === */
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: url('background.png');
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 0;
+  z-index: 1000;
+}
+
+.footer-nav .nav-btn {
+  background-color: #0a1e66;
+  border: 3px solid #facc15;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.footer-nav .nav-btn:hover {
+  background-color: #facc15;
+  transform: scale(1.1);
+}
+
+.footer-nav .nav-btn img {
+  width: 28px;
+  height: 28px;
+}
+
+.footer-nav .nav-btn:hover img {
+  filter: invert(0%) brightness(0%);
+}
+/* filepath: c:\Users\Tristan Karl\Downloads\Rizzalians-master\Rizzalians-master\myaccount.css */
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: url('background.png');
+  background-size: cover;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }  
+  
+  .logo {
+    width: 100px; 
+    height: 100px;
+    background-image: url('logo.png');
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background: transparent;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.nav-buttons button {
+  margin-left: 12px;
+  padding: 8px 16px;
+  border: none;
+  background: #facc15;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-buttons button:hover {
+  background: #fff;
+}
+
+
+/* PROFILE CARD */
+.profile-card {
+  width: 80%;
+  max-width: 980px;
+  background: #fff;
+  border-radius: 10px;
+  margin: 80px auto;
+  padding: 25px 35px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.profile-pic-container {
+  position: relative;
+}
+
+.profile-pic-container img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pic-edit {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  background: #0077b6;
+  color: #fff;
+  padding: 5px 7px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.pic-edit:hover {
+  background: #005f8f;
+}
+
+.profile-details {
+  flex: 1;
+}
+
+.profile-details h2 {
+  color: #0077b6;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.profile-details p {
+  margin-top: 4px;
+  color: #555;
+  font-size: 15px;
+}
+
+#editProfileBtn {
+  margin-top: 15px;
+  background: #facc15;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+#editProfileBtn:hover {
+  background: #ffeb7b;
+}
+
+/* ADDED: Delete profile button styling */
+#deleteProfileBtn {
+  margin-top: 15px;
+  margin-left: 10px; /* sits beside edit button */
+  background: #ef4444;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: 0 6px 18px rgba(239,68,68,0.12);
+}
+
+#deleteProfileBtn:hover {
+  background: #f87171;
+  transform: translateY(-2px);
+}
+
+/* Ensure buttons align nicely on small widths */
+.profile-details .actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* MODALS */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+  z-index: 2000;
+}
+
+.modal.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* MODAL CONTENT */
+.modal-content {
+  background: #fbfcfd;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  padding: 0;
+  overflow: hidden;
+}
+
+.modal-content h3 {
+  background: #3c5484;
+  color: #fff;
+  margin: 0;
+  padding: 10px 0;
+  border-radius: 20px 20px 0 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 90%;
+  margin: 15px auto;
+  padding: 12px 15px;
+  border: none;
+  background: #3c5484;
+  color: #fff;
+  border-radius: 30px;
+  font-size: 15px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+#editBio {
+  height: 100px;
+  border-radius: 15px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 15px 50px 20px;
+}
+
+.modal-buttons button {
+  background: #facc15;
+  border: none;
+  color: #000a29;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  flex-grow: 1;
+}
+
+.modal-buttons button:hover {
+  background: #fff;
+}
+
+#editProfileModal input,
+#editProfileModal select,
+#editProfileModal textarea {
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: #3c5484;
+  color: white;
+  font-size: 14px;
+  display: block;
+  outline: none;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+}
+
+#editProfileModal select {
+  appearance: none;
+  cursor: pointer;
+}
+
+#editProfileModal textarea {
+  height: 80px;
+  resize: none;
+}
+
+
+/* IMAGE MODAL */
+.image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 200;
+  animation: fadeIn 0.3s ease;
+}
+
+.image-modal.active {
+  display: flex;
+}
+
+.image-modal img {
+  max-width: 90%;
+  max-height: 70vh;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.image-modal .caption {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 80%;
+}
+
+.image-modal .actions {
+  display: flex;
+  gap: 20px;
+}
+
+.image-modal .actions button {
+  background: #0077b6;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.image-modal .actions button:hover {
+  background: #005f8f;
+}
+
+.image-modal .close-modal {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: transparent;
+  color: #fff;
+  font-size: 26px;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* === FOOTER NAVIGATION BAR === */
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: url('background.png');
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 0;
+  z-index: 1000;
+}
+
+.footer-nav .nav-btn {
+  background-color: #0a1e66;
+  border: 3px solid #facc15;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.footer-nav .nav-btn:hover {
+  background-color: #facc15;
+  transform: scale(1.1);
+}
+
+.footer-nav .nav-btn img {
+  width: 28px;
+  height: 28px;
+}
+
+.footer-nav .nav-btn:hover img {
+  filter: invert(0%) brightness(0%);
+}
