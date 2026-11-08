@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rizzalian - Matches</title>
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="matches.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"></div>
+    <div class="nav-buttons">
+      <button id="logoutBtn" type="button">Logout</button>
+    </div>
+  </nav>
+
+  <main class="matches-area">
+    <section id="listView" class="panel-card">
+      <h1>Matches</h1>
+      <div id="matchList"></div>
+      <p id="listEmpty" class="empty" hidden>No matches yet. Keep swiping!</p>
+    </section>
+
+    <section id="chatView" class="panel-card" hidden>
+      <header class="chat-head">
+        <button id="backBtn" type="button" aria-label="Back to matches">←</button>
+        <img id="chatAvatar" class="avatar" alt="">
+        <div class="chat-title">
+          <h2 id="chatName"></h2>
+          <p id="chatStatus"></p>
+        </div>
+        <button id="menuBtn" type="button" aria-label="More options">⋮</button>
+        <div id="chatMenu" class="chat-menu" hidden>
+          <button type="button" data-act="unmatch">Unmatch</button>
+          <button type="button" data-act="report">Report</button>
+          <button type="button" data-act="block">Block</button>
+        </div>
+      </header>
+      <div id="messages" class="messages"></div>
+      <form id="chatForm" class="chat-form">
+        <input id="chatInput" type="text" maxlength="1000" autocomplete="off" placeholder="Type a message">
+        <button id="sendBtn" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer-nav">
+    <button class="nav-btn" onclick="window.location.href='home.html'">
+      <img src="home.png" alt="Home">
+    </button>
+    <button class="nav-btn" onclick="window.location.href='matches.html'" aria-label="Matches">
+      <span style="font-size:26px;line-height:1">💬</span>
+    </button>
+    <button class="nav-btn" onclick="window.location.href='myaccount.html'">
+      <img src="profile.png" alt="Profile">
+    </button>
+    <button class="nav-btn" id="statsNavBtn" style="display:none" onclick="window.location.href='statistics.html'">
+      <img src="stats.png" alt="Statistics">
+    </button>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="matches.js"></script>
+  <script src="safety.js"></script>
+  <script src="nav.js"></script>
+</body>
+</html>

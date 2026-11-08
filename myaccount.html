@@ -10,7 +10,7 @@
   <nav class="navbar">
     <div class="logo"></div>
     <div class="nav-buttons">
-      <button onclick="window.location.href='rizzalian.html'"> Logout</button>
+      <button id="logoutBtn">Logout</button>
     </div>
   </nav>
 
@@ -42,8 +42,9 @@
     <div class="modal" id="editProfileModal">
       <div class="modal-content">
         <h3>Edit Profile</h3>
+        <input type="text" id="editUsername" placeholder="Username (3-20: letters, numbers, _ .)" maxlength="20">
         <input type="text" id="editName" placeholder="Full Name">
-        <input type="number" id="editAge" placeholder="Age">
+        <p class="modal-section">Birthday (18+ only, can't be changed once set)</p>
         <input type="date" id="editBirthday" placeholder="Birthday">
         <input type="text" id="editGraduatedCourse" placeholder="Graduated Course (e.g., BS Computer Science)">
         <input type="number" id="editGraduationYear" placeholder="Graduation Year (e.g., 2020)">
@@ -55,9 +56,11 @@
           <option value="Other">Other</option>
         </select>
         <input type="text" id="editLocation" placeholder="Location">
-        <input type="text" id="editHeight" placeholder="Height (e.g., 170 or 5'8&quot;)">
+        <input type="number" id="editHeight" placeholder="Height in cm (e.g., 170)" min="100" max="250">
         <input type="text" id="editHobbies" placeholder="Hobbies (e.g., reading, traveling)">
         <input type="text" id="editLookingFor" placeholder="Looking for (e.g., friendship, relationship)">
+        <p class="modal-section">Profile prompts (optional, up to 3)</p>
+        <div id="promptFields"></div>
         <textarea id="editBio" placeholder="Your bio..."></textarea>
         <div class="modal-buttons">
           <button id="cancelEdit">Cancel</button>
@@ -71,15 +74,19 @@
     <button class="nav-btn" onclick="window.location.href='home.html'">
       <img src="home.png" alt="Home">
     </button>
+    <button class="nav-btn" onclick="window.location.href='matches.html'" aria-label="Matches">
+      <span style="font-size:26px;line-height:1">💬</span>
+    </button>
     <button class="nav-btn" onclick="window.location.href='myaccount.html'">
       <img src="profile.png" alt="Profile">
     </button>
-    <button class="nav-btn" onclick="window.location.href='statistics.html'">
+    <button class="nav-btn" id="statsNavBtn" style="display:none" onclick="window.location.href='statistics.html'">
       <img src="stats.png" alt="Statistics">
     </button>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="myaccount.js"></script>
+  <script src="nav.js"></script>
 </body>
 </html>

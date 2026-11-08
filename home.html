@@ -1,55 +1,40 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rizzalian - Home</title>
+  <title>Rizzalian - Discover</title>
   <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="deck.css">
 </head>
 <body>
   <nav class="navbar">
     <div class="logo"></div>
 
-    <!-- Search bar (keeps existing behavior) -->
-    <form id="searchForm" class="search-bar" role="search" onsubmit="event.preventDefault();">
-      <label for="searchInput" class="visually-hidden">Search profiles</label>
-      <input id="searchInput" type="search" placeholder="Search names, interests or location..." aria-label="Search profiles">
-      <button type="button" id="clearSearch" title="Clear search">✕</button>
-      <div id="searchResults" class="search-results" hidden></div>
-    </form>
-
     <div class="nav-buttons">
-      <button onclick="window.location.href='rizzalian.html'">Logout</button>
-
-      <!-- Filter button placed beside Logout -->
       <div class="filter-wrapper">
         <button id="openFilterBtn" type="button" aria-haspopup="true" aria-expanded="false">Filter</button>
 
-        <!-- Inline dropdown filter (replaces full-screen panel) -->
-        <div class="filter-dropdown" id="filterDropdown" aria-hidden="true" hidden>
-          <form id="filterForm" class="filter-form" onsubmit="event.preventDefault(); applyFilter();">
+        <div class="filter-dropdown" id="filterDropdown" hidden>
+          <form id="filterForm" class="filter-form">
             <div class="filter-grid">
               <label>
-                ID
-                <input type="text" id="filterId" name="id" placeholder="e.g. 12345">
+                Show me
+                <select id="filterShow">
+                  <option value="all">Everyone</option>
+                  <option value="women">Women</option>
+                  <option value="men">Men</option>
+                </select>
               </label>
-
-              <label>
-                Last name
-                <input type="text" id="filterLastName" name="lastName" placeholder="e.g. Smith">
-              </label>
-
               <label>
                 Program
-                <input type="text" id="filterProgram" name="program" placeholder="e.g. Computer Science">
+                <input type="text" id="filterProgram" placeholder="e.g. Computer Engineering">
               </label>
-
               <label>
-                Meta tags (comma separated)
-                <input type="text" id="filterMeta" name="meta" placeholder="e.g. gamer,music,python">
+                Interests (comma separated)
+                <input type="text" id="filterMeta" placeholder="e.g. gaming, music, python">
               </label>
             </div>
-
             <div class="filter-actions">
               <button type="submit" class="apply-btn">Apply</button>
               <button type="button" class="clear-btn" id="clearFilter">Clear</button>
@@ -57,60 +42,79 @@
           </form>
         </div>
       </div>
+      <button id="logoutBtn" type="button">Logout</button>
     </div>
   </nav>
 
-  <!-- Navigation Arrows -->
-  <button class="nav-arrow left" id="leftArrow">←</button>
-  <button class="nav-arrow right" id="rightArrow">→</button>
+  <main class="deck-area">
+    <div class="deck" id="deck"></div>
 
-  <main class="feed" id="feed"></main>
+    <div class="deck-empty" id="deckEmpty" hidden>
+      <h2>You're all caught up</h2>
+      <p>No more profiles right now. Check back later or loosen your filters.</p>
+    </div>
 
-  <!-- Instagram-style sliding profile panel -->
+    <div class="deck-actions" id="deckActions">
+      <button id="passBtn" class="circle-btn pass" type="button" aria-label="Pass">✕</button>
+      <button id="infoBtn" class="circle-btn info" type="button" aria-label="View details">i</button>
+      <button id="likeBtn" class="circle-btn like" type="button" aria-label="Like">♥</button>
+    </div>
+  </main>
+
+  <!-- Profile details (tap a card or the "i" button) -->
   <div class="user-panel" id="userPanel">
     <div class="panel-container">
       <div class="panel-header">
-        <button class="close-btn" id="closePanel">✖</button>
+        <button class="close-btn" id="closePanel" type="button">✖</button>
       </div>
-
       <div class="user-main">
         <div class="profile-section">
           <img id="panelMainImg" class="main-photo" src="" alt="User">
-          <div class="action-buttons">
-            <button class="action-btn like-btn" id="likeBtn">❤️ Like</button>
-            <button class="action-btn dislike-btn" id="dislikeBtn">✖ Dislike</button>
-            <button class="match-btn" id="matchBtn" style="display: none;"></button>
-          </div>
         </div>
         <h2 id="panelName"></h2>
       </div>
-
-      <!-- User Details -->
       <div class="user-details" id="userDetails"></div>
-
-      <!-- Looking For -->
       <div class="looking-for-section">
         <h3 class="section-title">Looking For</h3>
         <p class="looking-for-text" id="lookingFor"></p>
       </div>
-
+      <div class="panel-safety">
+        <button id="panelReport" type="button">Report</button>
+        <button id="panelBlock" type="button">Block</button>
+      </div>
     </div>
   </div>
 
-  <!-- ✅ Footer Navigation (added) -->
+  <!-- It's a match -->
+  <div class="match-overlay" id="matchOverlay" hidden>
+    <div class="match-box">
+      <h2>It's a match! 💛</h2>
+      <p id="matchText"></p>
+      <div class="match-buttons">
+        <button id="matchKeep" type="button">Keep swiping</button>
+        <button id="matchChat" type="button" class="primary">Go to chat</button>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer-nav">
     <button class="nav-btn" onclick="window.location.href='home.html'">
       <img src="home.png" alt="Home">
     </button>
+    <button class="nav-btn" onclick="window.location.href='matches.html'" aria-label="Matches">
+      <span style="font-size:26px;line-height:1">💬</span>
+    </button>
     <button class="nav-btn" onclick="window.location.href='myaccount.html'">
       <img src="profile.png" alt="Profile">
     </button>
-    <button class="nav-btn" onclick="window.location.href='statistics.html'">
+    <button class="nav-btn" id="statsNavBtn" style="display:none" onclick="window.location.href='statistics.html'">
       <img src="stats.png" alt="Statistics">
     </button>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="home.js"></script>
+  <script src="safety.js"></script>
+  <script src="nav.js"></script>
 </body>
 </html>

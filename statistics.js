@@ -5,6 +5,14 @@ const SUPABASE_URL = 'https://ahhsnujwllarmhwunvsv.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoaHNudWp3bGxhcm1od3VudnN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE3OTA3OTIsImV4cCI6MjA3NzM2Njc5Mn0.KbTR4zYe2vn0i-DLbN1kK738gmXtk2qOBAzU0L9ndsk';
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// Admin guard: only admins may view the dashboard
+(async () => {
+  const { data: { session } } = await supabaseClient.auth.getSession();
+  if (!session) { window.location.href = 'rizzalian.html'; return; }
+  const { data: isAdmin } = await supabaseClient.rpc('is_admin');
+  if (isAdmin !== true) window.location.href = 'home.html';
+})();
+
 // =====================
 // HELPER FUNCTIONS
 // =====================
@@ -521,6 +529,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Initialize all charts
 const initializeCharts = async () => {
   try {
+    // Recalculate today's numbers on the server (admins only), then read them
+    const { error: refreshError } = await supabaseClient.rpc('refresh_daily_stats');
+    if (refreshError) console.error('Stats refresh failed:', refreshError);
+
     // Fetch all data
     const [
       activeUsers,

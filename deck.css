@@ -1,0 +1,106 @@
+/* Swipe deck - loaded after home.css */
+.deck-area {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 8px 16px 96px;
+}
+
+.deck {
+  position: relative;
+  width: min(380px, 92vw);
+  height: min(560px, calc(100vh - 300px));
+  min-height: 340px;
+}
+
+.swipe-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #3c5484;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.25s ease;
+}
+.swipe-card:active { cursor: grabbing; }
+.swipe-card.behind {
+  transform: scale(0.95) translateY(10px);
+  pointer-events: none;
+  filter: brightness(0.85);
+}
+
+.sc-photo { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.sc-shade {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(0, 10, 41, 0.92) 0%, rgba(0, 10, 41, 0.25) 45%, transparent 70%);
+}
+.sc-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 20px 20px; color: #fff; pointer-events: none; }
+.sc-name { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+.sc-sub { font-size: 14px; opacity: 0.92; margin-top: 2px; }
+.sc-bio {
+  margin-top: 8px; font-size: 14px; line-height: 1.4; opacity: 0.95;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.stamp {
+  position: absolute; top: 28px; padding: 4px 12px; border: 4px solid; border-radius: 10px;
+  font-size: 28px; font-weight: 800; letter-spacing: 2px; opacity: 0; pointer-events: none;
+}
+.stamp.like { left: 22px; color: #22c55e; border-color: #22c55e; transform: rotate(-14deg); }
+.stamp.nope { right: 22px; color: #ef4444; border-color: #ef4444; transform: rotate(14deg); }
+
+.deck-actions { display: flex; align-items: center; gap: 26px; }
+.circle-btn {
+  width: 64px; height: 64px; border-radius: 50%; border: 3px solid #facc15;
+  background: #0a1e66; color: #facc15; font-size: 28px; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: transform 0.15s, background 0.15s, color 0.15s;
+}
+.circle-btn:hover { transform: scale(1.1); background: #facc15; color: #0a1e66; }
+.circle-btn.pass:hover { background: #ef4444; border-color: #ef4444; color: #fff; }
+.circle-btn.like:hover { background: #22c55e; border-color: #22c55e; color: #fff; }
+.circle-btn.info { width: 46px; height: 46px; font-size: 20px; font-style: italic; font-family: Georgia, serif; }
+.circle-btn:disabled { opacity: 0.5; pointer-events: none; }
+
+.deck-empty {
+  text-align: center; color: #fff; background: rgba(10, 30, 102, 0.75);
+  padding: 32px 28px; border-radius: 20px; max-width: 380px;
+}
+.deck-empty h2 { margin-bottom: 8px; }
+
+.filter-form select {
+  width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 14px; background: #fff;
+}
+.filter-form input[type="text"] {
+  width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 14px;
+}
+
+.prompt-block { margin: 10px 0; padding: 12px 14px; border-radius: 12px; background: rgba(60, 84, 132, 0.12); }
+.prompt-block .q { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.7; }
+.prompt-block .a { margin-top: 4px; font-size: 15px; }
+
+.match-overlay {
+  position: fixed; inset: 0; z-index: 3000; background: rgba(0, 10, 41, 0.85);
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+}
+.match-overlay[hidden] { display: none; }
+.match-box { background: #fff; color: #0a1e66; border-radius: 22px; padding: 30px 26px; max-width: 360px; text-align: center; }
+.match-box h2 { font-size: 28px; margin-bottom: 10px; }
+.match-box p { color: #333; margin-bottom: 20px; }
+.match-buttons { display: flex; gap: 10px; }
+.match-buttons button {
+  flex: 1; padding: 11px 8px; border: 2px solid #facc15; border-radius: 30px; background: #fff;
+  color: #0a1e66; font-weight: 600; cursor: pointer;
+}
+.match-buttons button.primary { background: #facc15; }
+
+.panel-safety { display: flex; gap: 10px; padding: 16px 20px 24px; }
+.panel-safety button { flex: 1; padding: 10px; border: 2px solid #ef4444; border-radius: 24px; background: #fff; color: #dc2626; font-weight: 600; cursor: pointer; }
+.panel-safety button:hover { background: #ef4444; color: #fff; }
