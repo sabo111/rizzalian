@@ -229,7 +229,7 @@ function showMatch(u, match) {
 }
 
 $('matchKeep').addEventListener('click', () => { matchOverlay.hidden = true; });
-$('matchChat').addEventListener('click', () => { window.location.href = 'matches.html'; });
+$('matchChat').addEventListener('click', () => { window.location.href = '../pages/matches.html'; });
 
 passBtn.addEventListener('click', () => act('pass'));
 likeBtn.addEventListener('click', () => act('like'));
@@ -247,10 +247,8 @@ document.addEventListener('keydown', (e) => {
 // =====================
 // PROFILE PANEL
 // =====================
-let panelUser = null;
 function openPanel(u) {
   if (!u) return;
-  panelUser = u;
   userPanel.classList.add('active');
   $('panelName').textContent = `${displayName(u)}${u.age ? ', ' + u.age : ''}`;
   $('panelMainImg').src = u.profile_pic_url || PLACEHOLDER;
@@ -277,27 +275,6 @@ function openPanel(u) {
 
   $('lookingFor').textContent = u.looking_for || 'No preference specified';
 }
-
-function removeFromDeck(userId) {
-  pool = pool.filter((p) => p.user_id !== userId);
-  deck = deck.filter((p) => p.user_id !== userId);
-  userPanel.classList.remove('active');
-  renderDeck();
-}
-
-$('panelReport').addEventListener('click', async () => {
-  const u = panelUser;
-  if (!u) return;
-  const r = await Safety.report(u.user_id, displayName(u), null);
-  if (!r.done) return;
-  if (!r.blocked) await sendPass(u); // keep them out of the deck
-  removeFromDeck(u.user_id);
-});
-
-$('panelBlock').addEventListener('click', async () => {
-  const u = panelUser;
-  if (u && (await Safety.block(u.user_id, displayName(u)))) removeFromDeck(u.user_id);
-});
 
 $('closePanel').addEventListener('click', () => userPanel.classList.remove('active'));
 userPanel.addEventListener('click', (e) => { if (e.target === userPanel) userPanel.classList.remove('active'); });
@@ -342,13 +319,13 @@ $('clearFilter').addEventListener('click', () => {
 // =====================
 $('logoutBtn').addEventListener('click', async () => {
   await supabaseClient.auth.signOut();
-  window.location.href = 'rizzalian.html';
+  window.location.href = '../pages/rizzalian.html';
 });
 
 (async function init() {
   const { data: { session } } = await supabaseClient.auth.getSession();
   if (!session) {
-    window.location.href = 'rizzalian.html';
+    window.location.href = '../pages/rizzalian.html';
     return;
   }
   me = session.user.id;

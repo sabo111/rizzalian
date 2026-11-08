@@ -190,21 +190,14 @@ function addMessage(entry, msg) {
 
 $('backBtn').addEventListener('click', showList);
 
-// ⋮ menu: unmatch / report / block
+// ⋮ menu: unmatch
 $('menuBtn').addEventListener('click', (e) => { e.stopPropagation(); $('chatMenu').hidden = !$('chatMenu').hidden; });
 document.addEventListener('click', () => { $('chatMenu').hidden = true; });
 $('chatMenu').addEventListener('click', async (e) => {
   const act = e.target.dataset.act;
-  if (!act || !active) return;
+  if (act !== 'unmatch' || !active) return;
   const { match, other } = active;
-  const name = nameOf(other);
-  let ok = false;
-  if (act === 'unmatch') ok = await Safety.unmatch(match.id, name);
-  else if (act === 'block') ok = await Safety.block(other.user_id, name);
-  else if (act === 'report') {
-    const r = await Safety.report(other.user_id, name, match.id);
-    ok = r.blocked;
-  }
+  const ok = await Safety.unmatch(match.id, nameOf(other));
   if (ok) { active = null; showList(); loadAll(); }
 });
 
@@ -260,13 +253,13 @@ setInterval(() => { if (me) loadAll(); }, 30000);
 // =====================
 $('logoutBtn').addEventListener('click', async () => {
   await supabaseClient.auth.signOut();
-  window.location.href = 'rizzalian.html';
+  window.location.href = '../pages/rizzalian.html';
 });
 
 (async function init() {
   const { data: { session } } = await supabaseClient.auth.getSession();
   if (!session) {
-    window.location.href = 'rizzalian.html';
+    window.location.href = '../pages/rizzalian.html';
     return;
   }
   me = session.user.id;

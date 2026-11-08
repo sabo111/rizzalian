@@ -108,7 +108,7 @@ async function init() {
   buildPromptFields();
   const { data: { session } } = await supabaseClient.auth.getSession();
   if (!session) {
-    window.location.href = 'rizzalian.html';
+    window.location.href = '../pages/rizzalian.html';
     return;
   }
   currentUserId = session.user.id;
@@ -315,7 +315,7 @@ deleteProfileBtn?.addEventListener('click', async () => {
   }
   await supabaseClient.auth.signOut();
   alert('Account deleted.');
-  window.location.href = 'rizzalian.html';
+  window.location.href = '../pages/rizzalian.html';
 });
 
 // =====================
@@ -323,7 +323,7 @@ deleteProfileBtn?.addEventListener('click', async () => {
 // =====================
 logoutBtn?.addEventListener('click', async () => {
   await supabaseClient.auth.signOut();
-  window.location.href = 'rizzalian.html';
+  window.location.href = '../pages/rizzalian.html';
 });
 
 init();

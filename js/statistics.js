@@ -8,9 +8,9 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_
 // Admin guard: only admins may view the dashboard
 (async () => {
   const { data: { session } } = await supabaseClient.auth.getSession();
-  if (!session) { window.location.href = 'rizzalian.html'; return; }
+  if (!session) { window.location.href = '../pages/rizzalian.html'; return; }
   const { data: isAdmin } = await supabaseClient.rpc('is_admin');
-  if (isAdmin !== true) window.location.href = 'home.html';
+  if (isAdmin !== true) window.location.href = '../pages/home.html';
 })();
 
 // =====================

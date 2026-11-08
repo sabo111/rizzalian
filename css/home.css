@@ -9,7 +9,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: url('background.png');
+  background: url('../assets/background.png');
   background-size: cover;
   background-position: center;
 }
@@ -23,7 +23,7 @@ body {
 .logo {
   width: 100px;
   height: 100px;
-  background-image: url('logo.png');
+  background-image: url('../assets/logo.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -418,7 +418,7 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: url('background.png');
+  background: url('../assets/background.png');
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -701,252 +701,4 @@ body {
     left: 50%;
     transform: translateX(-50%);
   }
-}
-/* filepath: c:\Users\Tristan Karl\Downloads\Rizzalians-master\Rizzalians-master\home.css */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: url('background.png');
-  background-size: cover;
-  background-position: center;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.logo {
-  width: 100px;
-  height: 100px;
-  background-image: url('logo.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-/* NAVBAR: use grid so center element stays centered between left and right */
-.navbar {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 16px;
-  padding: 14px 40px;
-  background: transparent;
-  color: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-/* left and right alignment */
-.navbar > .logo,
-.navbar > .logo-container {
-  justify-self: start;
-}
-
-.navbar > .nav-buttons {
-  justify-self: end;
-}
-
-/* keep nav buttons styling */
-.nav-buttons button {
-  margin-left: 12px;
-  padding: 8px 16px;
-  border: none;
-  background: #facc15;
-  border-radius: 6px;
-  cursor: pointer;
-  color: #333;
-  font-weight: 500;
-  font-family: 'Poppins', sans-serif;
-  transition: 0.3s;
-}
-
-.nav-buttons button:hover {
-  background: #fff;
-}
-
-/* Feed & cards */
-.feed {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  gap: 30px;
-  padding: 40px;
-  position: relative;
-  scroll-behavior: smooth;
-  transition: transform 0.5s ease;
-}
-
-.profile-card {
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 20px;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-  width: 260px;
-  min-width: 260px;
-  padding: 20px;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.profile-card:hover {
-  transform: translateY(-5px);
-}
-
-.profile-pic {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 15px;
-}
-
-.name {
-  margin: 10px 0 5px;
-  color: #fff;
-  font-weight: 600;
-}
-
-.bio {
-  color: #f3f3f3;
-  font-size: 14px;
-}
-
-/* Navigation Arrows */
-.nav-arrow {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(250, 204, 21, 0.9);
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 24px;
-  color: #333;
-  cursor: pointer;
-  transition: 0.3s;
-  z-index: 50;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-.nav-arrow:hover {
-  background: #fff;
-  transform: translateY(-50%) scale(1.1);
-}
-
-.nav-arrow.left {
-  left: 20px;
-}
-
-.nav-arrow.right {
-  right: 20px;
-}
-
-.nav-arrow:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-/* Modal Overlay */
-.user-panel {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.user-panel.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.panel-container {
-  position: relative;
-  background: #ffffff;
-  backdrop-filter: none;
-  border-radius: 15px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  border: none;
-  width: 90%;
-  max-width: 900px;
-  height: 80vh;
-  max-height: 600px;
-  overflow-y: auto;
-  color: #333;
-  transform: translateY(-20px);
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* === Scrollbar styling with 15px width and rounded edges === */
-.panel-container::-webkit-scrollbar {
-  width: 15px;
-}
-
-.panel-container::-webkit-scrollbar-track {
-  background: #ffffff;
-  border-radius: 15px;
-}
-
-.panel-container::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 15px;
-}
-
-.panel-container::-webkit-scrollbar-thumb:hover {
-  background: #999;
-}
-
-.user-panel.active .panel-container {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.panel-header {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  z-index: 10;
-}
-
-.close-btn {
-  background: rgba(0, 0, 0, 0.1);
-  border: none;
-  color: #333;
-  font-size: 1.2rem;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s;
-  font-weight: bold;
 }

@@ -44,7 +44,7 @@ const termsToLogin = document.getElementById("termsToLogin");
 
 // Already signed in? Skip the login screen.
 supabaseClient.auth.getSession().then(({ data }) => {
-  if (data.session) window.location.href = "myaccount.html";
+  if (data.session) window.location.href = "../pages/myaccount.html";
 });
 
 // Latest birthday (ISO yyyy-mm-dd) that is still 18 or older today
@@ -168,7 +168,7 @@ signUpForm.addEventListener("submit", async (e) => {
           alert("Account created, but your profile details could not be saved. Please complete them in Edit Profile.");
         }
       }
-      window.location.href = "myaccount.html";
+      window.location.href = "../pages/myaccount.html";
       return;
     }
 
@@ -219,7 +219,7 @@ loginForm.addEventListener("submit", async (e) => {
       return;
     }
 
-    window.location.href = "myaccount.html";
+    window.location.href = "../pages/myaccount.html";
   } catch (err) {
     console.error("Login error:", err);
     alert("An unexpected error occurred. Please try again.");

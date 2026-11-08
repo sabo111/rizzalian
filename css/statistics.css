@@ -2,7 +2,7 @@ body {
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
-  background-image: url("background.png");
+  background-image: url("../assets/background.png");
   background-size: cover;        /* make image fill screen */
   background-position: center;   /* center the image */
   background-attachment: fixed;  /* keeps image static while scrolling */
@@ -12,7 +12,7 @@ body {
 
 
 h1 {
-  background-image: url("background.png");
+  background-image: url("../assets/background.png");
   color: white;
   padding: 15px 0;
   margin: 0;
@@ -36,7 +36,7 @@ h1 {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: url('background.png');
+  background: url('../assets/background.png');
   display: flex;
   justify-content: space-around;
   align-items: center;

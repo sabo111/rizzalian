@@ -2,7 +2,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background: url('background.png');
+  background: url('../assets/background.png');
   background-size: cover;
   background-position: center;
   font-family: 'Poppins', sans-serif;
@@ -35,7 +35,7 @@ body {
 .logo {
   width: 200px; 
   height: 200px;
-  background-image: url('logo.png');
+  background-image: url('../assets/logo.png');
   background-size: contain; 
   background-repeat: no-repeat;
   background-position: center;
